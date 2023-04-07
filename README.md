@@ -67,3 +67,13 @@ docker push lapnguyen/docker-rest-api:1.0.0
 ```bash
 docker run --name v2-docker-rest-api -d -p 3000:3000 lapnguyen/docker-rest-api:1.0.0
 ```
+# Volume mount
+1. Create a volume 
+```bash
+docker volume create todo-db
+```
+2. Start the todo app container
+`--mount` option to specify a volume mount. We will give the volume a name, and mount it to `/etc/todos` in the container, which will capture all files created at the path.
+```bash
+docker run -dp 3000:3000 --mount type=volume,src=todo-db,target=/etc/todos getting-started
+```
